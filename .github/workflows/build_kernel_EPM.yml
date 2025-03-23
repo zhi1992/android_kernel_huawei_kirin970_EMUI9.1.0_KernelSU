@@ -22,7 +22,7 @@ jobs:
       KERNEL_CMDLINE: "ARCH=arm64 CROSS_COMPILE=aarch64-linux-android- O=out"
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         submodules: 'true'
         fetch-depth: 100
@@ -52,7 +52,7 @@ jobs:
          cp -f MOD_FILE/selinuxfs/selinuxfs.c security/selinux/selinuxfs.c
          rm -rf KernelSU
          rm -rf drivers/kernelsu
-         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.2 main
+         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.2
          export PATH=$(pwd)/aarch64-linux-android-4.9/bin/:$PATH
          export ARCH=arm64
          export SUBARCH=arm64
@@ -63,7 +63,7 @@ jobs:
          tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07C00000 --header_version 1 --os_version 9 --os_patch_level 2020-01-01  --output Kirin970_Ravel_KSU_9.1.0_PM-EPM-${{ steps.get_time.outputs.TIME }}.img
   
     - name: Upload Ravel-KSU-Kernel-EPM
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
           name: Kirin970_Ravel_KSU_9.1.0-EPM-${{ steps.get_time.outputs.TIME }}
           path: "Kirin970_Ravel_KSU_9.1.0_PM-EPM-${{ steps.get_time.outputs.TIME }}.img"

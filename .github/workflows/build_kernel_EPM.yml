@@ -52,7 +52,7 @@ jobs:
          cp -f MOD_FILE/selinuxfs/selinuxfs.c security/selinux/selinuxfs.c
          rm -rf KernelSU
          rm -rf drivers/kernelsu
-         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.2 main
          export PATH=$(pwd)/aarch64-linux-android-4.9/bin/:$PATH
          export ARCH=arm64
          export SUBARCH=arm64
